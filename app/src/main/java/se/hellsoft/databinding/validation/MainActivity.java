@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         MainViewModel viewModel = ((MyApp) getApplication()).getMainViewModel();
         viewModel.setViewController(this);
 
@@ -24,8 +25,7 @@ public class MainActivity extends AppCompatActivity
         binding.setViewModel(viewModel);
         setContentView(binding.getRoot());
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(binding.toolbar);
 
         if (savedInstanceState == null) {
             onNavigate(R.layout.page_one);

@@ -7,6 +7,11 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+/**
+ * This is a view model using Android Data Binding for exposing properties to a layout.
+ * It is designed to survive configuration changes and can be shared by multiple views
+ * (fragments, activties or androi views).
+ */
 public class MainViewModel {
     private static final String TAG = "MainViewModel";
     public ObservableField<String> fullName = new ObservableField<>();
@@ -31,6 +36,10 @@ public class MainViewModel {
     public MainViewModel() {
     }
 
+    /**
+     * I would like to use this in the layout expressions, but there seems to be an issue related to this.
+     * See https://code.google.com/p/android/issues/detail?id=230115
+     */
     public <T> void onFieldChanged(ObservableField<T> field, ObservableBoolean errorIndicator,
                                    boolean hasFocus, Validator<T> validator) {
         if (hasFocus) {
@@ -80,6 +89,7 @@ public class MainViewModel {
         onFieldChanged(phoneNumber, phoneNumberError, hasFocus, minLength(5));
     }
 
+    // Form is valid if no error is detected and we got non-null values on all fields
     private boolean validateForm() {
         boolean isValid = !(fullNameError.get() && fullName.get() != null
                 && streetAddressError.get() && streetAddress.get() != null
@@ -99,6 +109,7 @@ public class MainViewModel {
         dataValid.set(false);
         viewController.onNavigate(R.layout.page_two);
 
+        // Fake a long running background operation
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -120,6 +131,7 @@ public class MainViewModel {
         void onNavigate(@LayoutRes int id);
     }
 
+    // Implemented by the Activity so Fragments can fetch this instance
     public interface ViewModelHolder {
         MainViewModel getViewModel();
     }
