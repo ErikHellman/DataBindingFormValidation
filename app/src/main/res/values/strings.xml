@@ -1,0 +1,21 @@
+<resources>
+    <string name="empty"/>
+    <string name="app_name">Data Binding Form Validation</string>
+    <string name="action_settings">Settings</string>
+    <string name="hint_full_name">Full name</string>
+    <string name="hint_street_address">Street address</string>
+    <string name="hint_post_code">Postcode</string>
+    <string name="hint_city_name">City</string>
+    <string name="hint_country_name">Country</string>
+    <string name="hint_email_address">Email</string>
+    <string name="hint_phone_number">Phone number</string>
+    <string name="label_registration_completed">Registration completed!</string>
+
+    <string name="full_name_error">Name must be at least 3 characters.</string>
+    <string name="street_address_error">Street address must be at least 3 characters.</string>
+    <string name="postal_code_error">Post code must be at least 3 characters.</string>
+    <string name="city_name_error">City name must be at least 3 characters.</string>
+    <string name="country_name_error">Country name must be at least 3 characters.</string>
+    <string name="email_address_error">Email address must be at least 3 characters.</string>
+    <string name="phone_number_error">Phone number must be at least 5 numbers.</string>
+</resources>

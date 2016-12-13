@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="se.hellsoft.databinding.validation.MainViewModel"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/content_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="se.hellsoft.databinding.validation.PageOne"
+        tools:showIn="@layout/activity_main">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/full_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:error="@{viewModel.fullNameError ? @string/full_name_error : @string/empty}"
+            app:errorEnabled="@{viewModel.fullNameError}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/hint_full_name"
+                android:inputType="textPersonName"
+                android:onFocusChange="@{(v,b) -> viewModel.onFullNameFocusChanged(b)}"
+                android:text="@={viewModel.fullName}"
+                tools:text="@string/hint_full_name"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/street_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            app:error="@{viewModel.streetAddressError ? @string/street_address_error : @string/empty}"
+            app:errorEnabled="@{viewModel.streetAddressError}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/full_name">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/hint_street_address"
+                android:inputType="textPostalAddress"
+                android:onFocusChange="@{(v,b) -> viewModel.onStreetAddressFocusChanged(b)}"
+                android:text="@={viewModel.streetAddress}"
+                tools:text="@string/hint_street_address"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/post_code"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            app:error="@{viewModel.postalCodeError ? @string/postal_code_error : @string/empty}"
+            app:errorEnabled="@{viewModel.postalCodeError}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/street_address">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/hint_post_code"
+                android:inputType="textPostalAddress"
+                android:onFocusChange="@{(v,b) -> viewModel.onPostalCodeFocusChanged(b)}"
+                android:text="@={viewModel.postalCode}"
+                tools:text="@string/hint_post_code"
+                />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/city"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            app:error="@{viewModel.cityNameError ? @string/city_name_error : @string/empty}"
+            app:errorEnabled="@{viewModel.cityNameError}"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/post_code"
+            >
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/hint_city_name"
+                android:inputType="textPostalAddress"
+                android:onFocusChange="@{(v,b) -> viewModel.onCityNameFocusChanged(b)}"
+                android:text="@={viewModel.cityName}"
+                tools:text="@string/hint_city_name"
+                />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/country_wrapper"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            app:error="@{viewModel.countryNameError ? @string/country_name_error : @string/empty}"
+            app:errorEnabled="@{viewModel.countryNameError}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/city"
+            >
+
+            <AutoCompleteTextView
+                android:id="@+id/country"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:completionHint="@string/hint_country_name"
+                android:hint="@string/hint_country_name"
+                android:lines="1"
+                android:maxLines="1"
+                android:onFocusChange="@{(v,b) -> viewModel.onCountryNameFocusChanged(b)}"
+                android:text="@={viewModel.countryName}"
+                tools:ignore="LabelFor"
+                tools:text="@string/hint_country_name"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:error="@{viewModel.emailAddressError ? @string/email_address_error : @string/empty}"
+            app:errorEnabled="@{viewModel.emailAddressError}"
+            app:layout_constraintHorizontal_bias="0.33"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/country_wrapper">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/hint_email_address"
+                android:inputType="textEmailAddress"
+                android:onFocusChange="@{(v,b) -> viewModel.onEmailAddressFocusChanged(b)}"
+                android:text="@={viewModel.emailAddress}"
+                tools:text="@string/hint_email_address"
+                />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            app:error="@{viewModel.phoneNumberError ? @string/phone_number_error : @string/empty}"
+            app:errorEnabled="@{viewModel.phoneNumberError}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email"
+            >
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/hint_phone_number"
+                android:inputType="phone"
+                android:onFocusChange="@{(v,b) -> viewModel.onPhoneNumberFocusChanged(b)}"
+                android:text="@={viewModel.phoneNumber}"
+                tools:text="@string/hint_phone_number"
+                />
+        </android.support.design.widget.TextInputLayout>
+
+    </android.support.constraint.ConstraintLayout>
+</layout>
+
