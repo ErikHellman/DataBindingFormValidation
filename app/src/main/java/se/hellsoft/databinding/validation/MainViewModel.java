@@ -90,7 +90,7 @@ public class MainViewModel {
     }
 
     // Form is valid if no error is detected and we got non-null values on all fields
-    private boolean validateForm() {
+    protected boolean validateForm() {
         boolean isValid = !(fullNameError.get() && fullName.get() != null
                 && streetAddressError.get() && streetAddress.get() != null
                 && postalCodeError.get() && postalCode.get() != null
